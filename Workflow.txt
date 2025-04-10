@@ -1,0 +1,14 @@
+This project is an end-to-end E-commerce business case Study to practice ETL and cloud-based RDS
+The tech stack & workflow is as follows:
+
+
+1. Data Cleaning ---- PostgreSQL / AWS RDS
+    1.1 There will be no Data Extraction as I am using a publicly available dataset from Kaggle
+    1.2 
+
+2. Advanced Analysis / Modelling  ---- Python (Pandas, Scikit-learn, Tensorflow, Matplotlib,)
+3. Store raw datasets / data lake  ---- AWS S3
+4. SQL Database (cloud-hosted) ---- AWS RDS
+5. Dashbords & Reporting  ---- Tableau / PowerBI
+6. Full version Control & Collaboration  ---- Github
+
