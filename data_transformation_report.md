@@ -52,5 +52,40 @@ I used a CASE statement to assign categories:
 
 This will be useful when doing downstream analytical work.
 
+# 3. Dimensional Modelling (Star Schema)
 
+To support downstream Business Intelligence and dashboarding in Power BI & Tableau, I applied dimensional modelling to transform the cleaned data into fact and dimension tables.
+
+# 3.1. Fact Table
+
+## `fact_sales`
+Captures all transactional-level data related to sales events. It includes numerical KPIs and foreign keys to connect with dimension tables.
+
+| Column         | Description                      |
+|----------------|----------------------------------|
+| invoice_no     | Unique order number              |
+| product_id     | FK to dim_product                |
+| customer_id    | FK to dim_customer               |
+| date           | FK to dim_date                   |
+| quantity       | Number of units sold             |
+| unit_price     | Price per unit                   |
+| total          | Calculated revenue               |
+| transaction_type| sale / return / adjustment      |
+
+# 3.2. Dimension Tables
+
+### `dim_customer`
+Simplifies customer segmentation and geographic grouping.
+
+
+### `dim_guest`
+Tracks the transactions that were made from guest users.
+
+### `dim_product`
+Centralized product catalog table.
+
+
+### `dim_date`
+Supports trend analysis and time-based slicing.
+- Year, Month, Day, Weekday, Hour, Minute & Hour and Minute extracted from `invoice_date`
 
