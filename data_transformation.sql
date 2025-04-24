@@ -1,6 +1,3 @@
-/* Transformation Steps */
-
-DROP VIEW IF EXISTS clean_sales_data;
 CREATE OR REPLACE VIEW clean_sales_data AS
 SELECT
   CAST("InvoiceNo" AS TEXT) AS invoice_no,

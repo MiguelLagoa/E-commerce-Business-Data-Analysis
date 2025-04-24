@@ -46,7 +46,7 @@ Workflow:
         4.3.1. raw file
         4.3.2. clean file
 
-5. Analysis & Modeling                                                                     Progress:
+5. Analysis & Modelling                                                                    Progress:
     5.1. Tools: Python
         5.1.1. Libraries:
             5.1.1.1. 
