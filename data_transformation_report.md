@@ -84,7 +84,6 @@ Tracks the transactions that were made from guest users.
 ### `dim_product`
 Centralized product catalog table.
 
-
 ### `dim_date`
 Supports trend analysis and time-based slicing.
 - Year, Month, Day, Weekday, Hour, Minute & Hour and Minute extracted from `invoice_date`
