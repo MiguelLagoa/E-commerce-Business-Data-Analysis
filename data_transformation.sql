@@ -1,3 +1,5 @@
+/* Create a table with normalized columns and values */
+
 CREATE OR REPLACE VIEW clean_sales_data AS
 SELECT
   CAST("InvoiceNo" AS TEXT) AS invoice_no,
@@ -59,7 +61,7 @@ SELECT DISTINCT
 	EXTRACT(YEAR FROM invoice_date) AS year,
 	EXTRACT(MONTH FROM invoice_date) AS month,
 	EXTRACT(DAY FROM invoice_date) AS day,
-	TO_CHAR(invoice_date, 'Day') AS weekday,
+	TRIM(TO_CHAR(invoice_date, 'Day')) AS weekday,
 	EXTRACT(HOUR FROM invoice_date) AS hour,  
 	EXTRACT(MINUTE FROM invoice_date) AS minute,
   	TO_CHAR(invoice_date, 'HH24:MI') AS hour_minute 
