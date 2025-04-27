@@ -25,23 +25,26 @@ FROM raw_data;
 
 DROP TABLE IF EXISTS dim_customer;
 CREATE TABLE dim_customer AS
-SELECT DISTINCT
-  	customer_id,
-  	country
+SELECT DISTINCT ON (customer_id)
+    customer_id,
+    country
 FROM clean_sales_data
-WHERE customer_id IS NOT NULL;
+WHERE customer_id IS NOT NULL
+ORDER BY customer_id;
 
 /* Guest Checkout Dimension */
 
 DROP TABLE IF EXISTS dim_guest;
 CREATE TABLE dim_guest AS
-SELECT DISTINCT 
-	ROW_NUMBER() OVER () + 100000 AS guest_id,  
-	invoice_no,
-	country,
-	invoice_date
+SELECT DISTINCT
+    ROW_NUMBER() OVER () + 100000 AS guest_id,
+    invoice_no,
+    country,
+    MIN(invoice_date) AS first_purchase_date
 FROM clean_sales_data
-WHERE customer_id IS NULL;
+WHERE customer_id IS NULL
+GROUP BY invoice_no, country;
+
 
 /* Product Dimension */
 
@@ -69,6 +72,7 @@ FROM clean_sales_data;
 
 
 /* Fact Table (fact_sales) for PowerBI/ Tableau reporting */
+
 DROP TABLE IF EXISTS fact_sales;
 CREATE TABLE fact_sales AS
 SELECT
@@ -76,7 +80,7 @@ SELECT
   cs.product_id,
   CASE
     WHEN cs.customer_id IS NOT NULL THEN cs.customer_id
-    ELSE (ROW_NUMBER() OVER (ORDER BY cs.invoice_no) + 100000) -- Create a unique guest_id
+    ELSE (ROW_NUMBER() OVER (PARTITION BY cs.invoice_no ORDER BY cs.invoice_date) + 200000) -- Unique ID per guest invoice
   END AS user_id,
   CASE
     WHEN cs.customer_id IS NULL THEN 'guest'
@@ -95,21 +99,18 @@ WHERE unit_price >= 0;
 DROP TABLE IF EXISTS eda_sales_data;
 CREATE TABLE eda_sales_data AS
 SELECT
-  fs.invoice_no,
-  fs.product_id,
-  dp.description,
-  fs.user_id,
-  fs.user_type,
-  COALESCE(dc.country, dg.country) AS country,
-  fs.invoice_date,
-  fs.quantity,
-  fs.unit_price,
-  fs.total,
-  fs.transaction_type
-FROM fact_sales fs
-LEFT JOIN dim_product dp ON fs.product_id = dp.product_id
-LEFT JOIN dim_customer dc ON fs.user_id = dc.customer_id
-LEFT JOIN dim_guest dg ON fs.user_id = dg.guest_id;
+  invoice_no,
+  product_id,
+  description,
+  quantity,
+  invoice_date,
+  unit_price,
+  customer_id,
+  country,
+  transaction_type,
+  ROUND(quantity * unit_price, 2) AS total
+FROM clean_sales_data;
+
 
 
 
