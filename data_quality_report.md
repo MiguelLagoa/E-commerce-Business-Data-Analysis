@@ -104,5 +104,5 @@ First I will understand the timeframe of dataset using this query:
         MAX("InvoiceDate") AS last_date
     FROM raw_data;
 
-Now I know that the oldest recorded date in my dataset is 09/09/2011 9:52 and the newer recorded date is 10/10/2011.
+Now I know that the oldest recorded date in my dataset is 01/12/2010 08:26 and the newer recorded date is 09/12/2011 12:50.
 This reassures the validity of the timestamps, allowing me to proceed.  
