@@ -1,0 +1,71 @@
+This project is an end-to-end E-commerce business case study to practice ELT and cloud-based RDS.
+
+Tech stack:
+
+Languages: Python, SQL
+Cloud: AWS RDS ( PostgreSQL)
+Data Visualization & Reporting: Tableau and Power BI
+Version Control: GitHub
+
+Workflow:
+
+1. Data Extraction                                                                         Progress: Complete
+    1.1. Source: Kaggle E-Commerce dataset
+    1.2. Artifacts: 
+        1.2.1. "data.csv" 
+
+2. Data Loading                                                                            Progress: Complete
+    2.1. Script: "data_loading.py"
+        2.1.1. Libraries: 
+            2.1.1.1. pandas
+            2.1.1.2. dotenv 
+            2.1.1.3. SQLAlchemy
+            2.1.1.4. os 
+    2.2. Action: Loads data.csv into AWS RDS (PostgreSQL)
+    2.3. Results: Creates "raw_data" in AWS RDS
+    2.4. Artifacts: 
+        2.4.1. Data Loading Python File : "data_loading.py"
+        2.4.2. Data Quality Report: "data_quality_report.md" for initial profiling (nulls & bad entries). 
+
+3. Data Transformation                                                                     Progress: Complete
+    3.1. Tools: pgAdmin 4 (connected to AWS RDS)
+    3.2. Action:
+        3.2.1. Clean text
+        3.2.2. Convert data types
+        3.2.3. Create new columns
+    3.3. Results: Create SQL VIEW / materialized table
+    3.4. Artifacts:
+        3.4.1. Data Transformation Report : "data_transformation_report.md" for transformation steps done.
+        3.4.2. SQL Scripts : "data_transformation.sql"
+        3.4.3. Clean View: "clean_sales_data"
+
+4. Data Lake Storage                                                                       Progress: 
+    4.1. Tools: AWS S3
+    4.2. Action: Store original and cleaned versions of datasets in AWS S3
+    4.3. Artifacts: 
+        4.3.1. raw file
+        4.3.2. clean file
+
+5. Analysis & Modeling                                                                     Progress:
+    5.1. Tools: Python
+        5.1.1. Libraries:
+            5.1.1.1. 
+            5.1.1.1. 
+    5.2. Action:
+        5.2.1. EDA
+        5.2.2. Sales trends & customer behaviour 
+        5.2.3. Predictive Modeling 
+    5.3. Artifacts:
+        5.3.1.
+
+6. Dashbords & Reporting                                                                   Progress:
+    6.1. Tools: Tableau & Power BI
+    6.2. Connection: Direct connection to AWS RDS
+    6.3. Artifacts:
+        6.3.1.
+
+
+7. Version Control & Documentation                                                         Progress: 
+    7.1. Tools: GitHub & GitBash
+
+
