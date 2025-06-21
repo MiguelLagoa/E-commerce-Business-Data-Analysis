@@ -18,7 +18,7 @@ The first step taken was to load the "data.csv" file into pgAdmin4 (or is it AWS
         2.1.5. InvoiceDate (String)
         2.1.6. UnitPrice (Float)
         2.1.7. CustomerID (Float)
-        .1.8. Country (Text)
+        2.1.8. Country (Text)
 
 
 ## 3. Data Quality Checks: 
