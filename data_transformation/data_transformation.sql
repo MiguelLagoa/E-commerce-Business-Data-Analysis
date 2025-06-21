@@ -1,7 +1,6 @@
 
 /* Create a table with normalized columns and values */
 
-
 CREATE OR REPLACE VIEW clean_sales_data AS
 SELECT
   CAST("InvoiceNo" AS TEXT) AS invoice_no,
